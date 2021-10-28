@@ -8,7 +8,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         static: baseWebpackConfig.externals.path.dist,
         client: {
             overlay: {
-                warnings: false,
+                warnings: true,
                 errors: true
             }
         }

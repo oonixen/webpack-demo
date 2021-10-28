@@ -1,5 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const PATHS = {
     src: path.join(__dirname, '../src'),
@@ -23,9 +25,21 @@ module.exports = {
     entry: {
         app: PATHS.src
     },
+    optimization: {
+        minimizer: [
+            `...`,
+            new CssMinimizerPlugin(),
+        ],
+    },
     plugins: [
-        new HtmlWebpackPlugin({})
+        new HtmlWebpackPlugin({template: `${PATHS.src}/index.html`,}),
+        new MiniCssExtractPlugin({filename: "[name].[contenthash].css"})
     ],
+    output: {
+        path: PATHS.dist,
+        clean: true,
+        filename: "[name].[contenthash].js"
+    },
     module: {
         rules: [
             {
@@ -52,9 +66,17 @@ module.exports = {
                 test: /\.s[ac]ss$/i,
                 exclude: /node_modules/,
                 use: [
-                    "style-loader",
-                    "css-loader",
-                    "sass-loader"
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                localIdentName:'[local]'
+                            }
+                        }
+                    },
+                    "sass-loader",
+                    "postcss-loader",
                 ]
             }
         ]
