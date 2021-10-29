@@ -1,10 +1,10 @@
 import {render} from 'react-dom'
 import React from "react";
-import {BlockAnimationComponent} from "./components/BlockAnimationComponent";
+import {CounterAnimation} from "./components/CounterAnimation";
 import 'style.scss'
 
 const app = (
-    <BlockAnimationComponent/>
+    <CounterAnimation/>
 )
 
 render(
