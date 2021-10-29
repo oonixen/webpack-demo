@@ -1,0 +1,47 @@
+$transitionTime_block: 600ms;
+$transitionTime_innerBlock: 500ms;
+
+@mixin blockMixin () {
+  width: 200px;
+  height: 100px;
+}
+
+.BlockAnimationComponent__view {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.BlockAnimationComponent__block {
+  @include blockMixin();
+  margin-bottom: 20px;
+}
+
+.BlockAnimationComponent__innerBlock {
+  @include blockMixin();
+  background-color: #57777a;
+}
+
+.BlockAnimationComponent__block.enter-active {
+  height: 0;
+  margin-bottom: 0;
+  transition: height $transitionTime_block, margin-bottom $transitionTime_block;
+}
+
+.BlockAnimationComponent__innerBlock.enter-active {
+  opacity: 0;
+  transform: translate(-100%);
+  transition: opacity $transitionTime_innerBlock, transform $transitionTime_innerBlock;
+}
+
+.BlockAnimationComponent__block.enter-done {
+  height: 0;
+  margin-bottom: 0;
+}
+
+.BlockAnimationComponent__innerBlock.enter-done {
+  opacity: 0;
+}
+

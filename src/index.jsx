@@ -1,13 +1,10 @@
 import {render} from 'react-dom'
 import React from "react";
-import styles from './style.scss'
+import {BlockAnimationComponent} from "./components/BlockAnimationComponent";
+import 'style.scss'
 
 const app = (
-    <h1
-        className={styles.color}
-    >
-        Test
-    </h1>
+    <BlockAnimationComponent/>
 )
 
 render(
